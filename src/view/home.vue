@@ -16,7 +16,20 @@
                     <Aside @enterChange="enterChangeHandler" @leaverChange="leaverChangeHandler"></Aside>
                 </el-aside>
                 <el-main style="margin-left:65px">
-                    <router-view></router-view>
+                    <div>
+                        <el-breadcrumb separator-class="el-icon-arrow-right">
+                                    <el-breadcrumb-item
+                                        v-for="(obj,i) in breadList"
+                                        :key="i"
+                                        :to="{ path: obj.path }"
+                                        :class="{isPrevent:breadcrumbLength == i}"
+                                    >{{obj.meta.desc}}
+                                    </el-breadcrumb-item>
+                        </el-breadcrumb>
+                    </div>
+                    <div>
+                        <router-view></router-view>
+                    </div>                
                 </el-main>
             </el-container>
         </el-container>
@@ -32,8 +45,14 @@ export default {
     props: [],
     data() {
         return {
-            asideWidth: ""
+            asideWidth: "",
+            breadList:[]
         };
+    },
+    watch: {
+        $route (to, from) {
+            this.getBreadcrumb(to, from);
+        }
     },
     mounted() {},
     methods: {
@@ -42,6 +61,10 @@ export default {
         },
         leaverChangeHandler(data) {
             this.asideWidth = data;
+        },
+        getBreadcrumb(to, from){
+            let matched = this.$route.matched.filter(item => item.meta.desc);
+            this.breadList = matched
         }
     }
 };
