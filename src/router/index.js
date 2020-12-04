@@ -2,7 +2,7 @@
  * @Author: limy
  * @Date: 2020-12-02 10:54:27
  * @LastEditors: limy
- * @LastEditTime: 2020-12-02 16:17:25
+ * @LastEditTime: 2020-12-04 14:22:29
  * @Description: 
  */
 import Vue from 'vue'
@@ -18,11 +18,20 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/home',
+      path: '/',
       name: 'home',
+      redirect: '/home',
       meta: {
         desc: '主页'
+      },
     },
+    {
+      path: '/home',
+      name: 'home',
+      // redirect: '/home',
+      meta: {
+        desc: '主页'
+      },
       component: components.home,
       children:[
         {

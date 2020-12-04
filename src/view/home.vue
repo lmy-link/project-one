@@ -22,12 +22,11 @@
                                         v-for="(obj,i) in breadList"
                                         :key="i"
                                         :to="{ path: obj.path }"
-                                        :class="{isPrevent:breadcrumbLength == i}"
                                     >{{obj.meta.desc}}
                                     </el-breadcrumb-item>
                         </el-breadcrumb>
                     </div>
-                    <div>
+                    <div class="mainContent">
                         <router-view></router-view>
                     </div>                
                 </el-main>
@@ -54,7 +53,9 @@ export default {
             this.getBreadcrumb(to, from);
         }
     },
-    mounted() {},
+    mounted() {
+        this.getBreadcrumb()
+    },
     methods: {
         enterChangeHandler(data) {
             this.asideWidth = data;
@@ -91,7 +92,12 @@ export default {
 body > .el-container {
     margin-bottom: 40px;
 }
-
+.mainContent{
+    padding: 10px;
+    margin-top:10px;
+    height: calc(100% - 50px);
+    background: #fff
+}
 .el-container:nth-child(5) .el-aside,
 .el-container:nth-child(6) .el-aside {
 }
