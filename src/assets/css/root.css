@@ -46,3 +46,6 @@ a {
 .el-main{
     padding:10px !important
 }
+.el-input{
+    width: 300px
+}

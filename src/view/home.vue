@@ -1,16 +1,12 @@
-<!--
- * www.cloudscope.cn
- * Copyright (c) 2019. All Rights Reserved.
--->
-<!--
- * @Author: liuchang
- * @Date: 2019-08-14 11:57:16
- * @Description: 添加角色弹窗
--->
 <template>
     <div>
         <el-container>
-            <el-header>Header</el-header>
+            <el-header>
+                <div class="title">XXXXL管理系统</div>
+                <div class="logoutBtn">
+                    <el-button type="text" @click="logout">退出登录</el-button>
+                </div>
+            </el-header>
             <el-container>
                 <el-aside :width="asideWidth">
                     <Aside @enterChange="enterChangeHandler" @leaverChange="leaverChangeHandler"></Aside>
@@ -66,12 +62,23 @@ export default {
         getBreadcrumb(to, from){
             let matched = this.$route.matched.filter(item => item.meta.desc);
             this.breadList = matched
+        },
+        logout(){
+            this.$message.success("退出成功");
+            this.$router.push({
+                path: "/",
+            });
         }
     }
 };
 </script>
 
 <style scoped>
+.title{
+    float: left;
+    font-size: 20px;
+    margin-top:18px
+}
 .el-header,
 .el-footer {
     background-color: #b3c0d1;
@@ -97,6 +104,13 @@ body > .el-container {
     margin-top:10px;
     height: calc(100% - 50px);
     background: #fff
+}
+.logoutBtn{
+    margin-top:10px;
+    float: right;
+}
+.el-button{
+    font-size: 16px;
 }
 .el-container:nth-child(5) .el-aside,
 .el-container:nth-child(6) .el-aside {

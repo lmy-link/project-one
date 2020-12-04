@@ -2,7 +2,7 @@
  * @Author: limy
  * @Date: 2020-12-02 10:54:27
  * @LastEditors: limy
- * @LastEditTime: 2020-12-04 14:22:29
+ * @LastEditTime: 2020-12-04 17:28:03
  * @Description: 
  */
 import Vue from 'vue'
@@ -11,6 +11,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 const components = {
+  login: () => import ('@/view/login'),
   home: () => import ('@/view/home'),
   element:() => import ('@/view/element/element'),
 };
@@ -19,18 +20,17 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      redirect: '/home',
+      name: 'login',
       meta: {
-        desc: '主页'
+        desc: '登录页面'
       },
+      component: components.login,
     },
     {
       path: '/home',
       name: 'home',
-      // redirect: '/home',
       meta: {
-        desc: '主页'
+        desc: '首页'
       },
       component: components.home,
       children:[
