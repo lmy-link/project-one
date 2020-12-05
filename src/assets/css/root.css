@@ -43,3 +43,9 @@ a {
     display: flex;
     flex-direction: column;
 }
+.el-main{
+    padding:10px !important
+}
+.el-input{
+    width: 300px
+}
