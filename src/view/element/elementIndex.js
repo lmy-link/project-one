@@ -2,7 +2,7 @@
  * @Author: limy
  * @Date: 2020-12-02 16:10:09
  * @LastEditors: limy
- * @LastEditTime: 2020-12-02 16:52:02
+ * @LastEditTime: 2020-12-07 10:29:58
  * @Description: 
  */
 export default {
@@ -13,7 +13,12 @@ export default {
         tell:global.router
       }
     },
-    mounted () {},
+    mounted () {
+      this.func()
+    },
     methods: {
+      func(){
+        this.$api.CommonApi.deleteBeyondPerson()
+      }
     }
   }
