@@ -13,7 +13,7 @@
                     </el-form-item>
                 </el-form>
                 <div class="loginBtn">
-                    <el-button @click="login">登录</el-button>
+                    <el-button type="text" @click="login"><span style="color:#4970ad;font-size:16px">登录</span></el-button>
                 </div>
             </div>
         </div>

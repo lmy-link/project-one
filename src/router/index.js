@@ -2,7 +2,7 @@
  * @Author: limy
  * @Date: 2020-12-02 10:54:27
  * @LastEditors: limy
- * @LastEditTime: 2020-12-04 17:28:03
+ * @LastEditTime: 2020-12-16 09:52:29
  * @Description: 
  */
 import Vue from 'vue'
@@ -14,6 +14,7 @@ const components = {
   login: () => import ('@/view/login'),
   home: () => import ('@/view/home'),
   element:() => import ('@/view/element/element'),
+  echarts:() => import ('@/view/echarts/echarts'),
 };
 export default new Router({
   mode: 'history',
@@ -41,7 +42,15 @@ export default new Router({
             desc: 'element-ui'
           },
           component: components.element,  
-        }
+        },
+        {
+          path: 'echarts',
+          name: 'echarts',
+          meta: {
+            desc: 'echarts'
+          },
+          component: components.echarts,  
+        },
       ]
     }
   ]

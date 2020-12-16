@@ -2,7 +2,7 @@
  * @Author: limy
  * @Date: 2020-12-02 13:37:06
  * @LastEditors: limy
- * @LastEditTime: 2020-12-02 18:08:51
+ * @LastEditTime: 2020-12-16 13:40:47
  * @Description: 
 -->
 
@@ -76,6 +76,7 @@ export default {
     position: fixed;
     left: 0;
     top: 40px;
+    z-index: 9999;
 }
 .el-menu {
     height: 100%;

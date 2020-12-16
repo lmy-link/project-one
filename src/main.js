@@ -2,7 +2,7 @@
  * @Author: limy
  * @Date: 2020-12-02 10:54:27
  * @LastEditors: limy
- * @LastEditTime: 2020-12-07 10:31:20
+ * @LastEditTime: 2020-12-16 10:50:42
  * @Description: 
  */
 // The Vue build version to load with the `import` command
@@ -15,11 +15,15 @@ import './assets/css/root.css';
 import 'element-ui/lib/theme-chalk/index.css';
 import './global/gloabal';
 
+import echarts from 'echarts'
+
 import Qs from 'qs';
 import api from '@/service/api.js';
 
 Vue.prototype.$Qs = Qs;
 Vue.prototype.$api = api;
+Vue.prototype.$echarts = echarts
+ 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 /* eslint-disable no-new */

@@ -2,7 +2,7 @@
  * @Author: limy
  * @Date: 2020-12-02 16:31:23
  * @LastEditors: limy
- * @LastEditTime: 2020-12-02 17:59:41
+ * @LastEditTime: 2020-12-16 09:49:26
  * @Description: 
  */
 
@@ -31,5 +31,11 @@ global.router = [
         path: '/home/element',
         class:'el-icon-setting',
         index:4
+    },
+    {
+        name: 'echarts',
+        path: '/home/echarts',
+        class:'el-icon-setting',
+        index:5
     },
 ]
