@@ -100,9 +100,9 @@ body > .el-container {
     margin-bottom: 40px;
 }
 .mainContent{
-    padding: 10px;
+    /* padding: 10px; */
     margin-top:10px;
-    height: calc(100% - 50px);
+    height: calc(100% - 30px);
     background: #fff
 }
 .logoutBtn{

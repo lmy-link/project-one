@@ -2,21 +2,21 @@
  * @Author: limy
  * @Date: 2020-12-02 16:31:23
  * @LastEditors: limy
- * @LastEditTime: 2020-12-16 09:49:26
+ * @LastEditTime: 2020-12-16 14:42:09
  * @Description: 
  */
 
 
 global.router = [
     {
-        name: 'element',
-        path: '/home/element',
+        name: 'home',
+        path: '/home',
         class:'el-icon-menu',
-        index:1
+        index:1,
     },
     {
-        name: 'table',
-        path: '/home',
+        name: 'element',
+        path: '/home/element',
         class:'el-icon-menu',
         index:2
     },

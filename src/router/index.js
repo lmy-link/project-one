@@ -2,7 +2,7 @@
  * @Author: limy
  * @Date: 2020-12-02 10:54:27
  * @LastEditors: limy
- * @LastEditTime: 2020-12-16 09:52:29
+ * @LastEditTime: 2020-12-16 15:05:19
  * @Description: 
  */
 import Vue from 'vue'
@@ -15,6 +15,7 @@ const components = {
   home: () => import ('@/view/home'),
   element:() => import ('@/view/element/element'),
   echarts:() => import ('@/view/echarts/echarts'),
+  todolist:() => import ('@/view/todolist'),
 };
 export default new Router({
   mode: 'history',
@@ -30,11 +31,20 @@ export default new Router({
     {
       path: '/home',
       name: 'home',
+      redirect: '/home/toDoList',
       meta: {
         desc: '首页'
       },
       component: components.home,
       children:[
+        {
+          path: 'todolist',
+          name: 'todolist',
+          meta: {
+            desc: 'todolist'
+          },
+          component: components.todolist,  
+        },
         {
           path: 'element',
           name: 'element',
