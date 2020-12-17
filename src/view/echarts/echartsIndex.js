@@ -2,7 +2,7 @@
  * @Author: limy
  * @Date: 2020-12-02 16:10:09
  * @LastEditors: limy
- * @LastEditTime: 2020-12-16 17:56:22
+ * @LastEditTime: 2020-12-17 11:11:10
  * @Description: 
  */
 export default {
@@ -173,69 +173,24 @@ export default {
           {
             echartsId: "myChart4",
             echartObj: {
-              radar: {
-                // shape: 'circle',
-                indicator: [
-                  {
-                    name: "初中",
-                    max: 6500
-                  },
-                  {
-                    name: "硕士",
-                    max: 16000
-                  },
-                  {
-                    name: "博士",
-                    max: 30000
-                  },
-                  {
-                    name: "学士",
-                    max: 38000
-                  },
-                  {
-                    name: "高中",
-                    max: 52000
-                  }
-                ]
+              color: ["#3398DB"],
+              xAxis: {
+                  type: 'category',
+                  data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
               },
-              series: [
-                {
-                  type: "radar",
-                  // areaStyle: {normal: {}},
-                  data: [
-                    {
-                      value: [4300, 14000, 28000, 35000, 50000, 19000],
-                      name: "预算分配（Allocated Budget）"
-                    }
-                  ],
-                  areaStyle: {
-                    normal: {
-                      color: "rgba(0, 100, 255,.7)" // 填充的颜色。[ default: "#000" ]
-                    }
-                  },
-                  lineStyle: {
-                    // 单项线条样式。
-                    normal: {
-                      opacity: 0.5, // 图形透明度
-                      color: "rgba(0, 100, 255,1)"
-                    }
-                  },
-                  itemStyle: {
-                    // 单个拐点标志的样式设置。
-                    normal: {
-                      borderColor: "rgba(0, 100, 255,.5)", // 拐点的描边颜色。[ default: '#000' ]
-                      borderWidth: 3 // 拐点的描边宽度，默认不描边。[ default: 0 ]
-                    }
-                  }
-                }
-              ]
-            }
+              yAxis: {
+                  type: 'value'
+              },
+              series: [{
+                  data: [820, 932, 901, 934, 1290, 1330, 1320],
+                  type: 'line'
+              }]
+          }
           }
         ]
       }
     },
     mounted () {
-      console.log(this.arr)
     },
     methods: {
     }

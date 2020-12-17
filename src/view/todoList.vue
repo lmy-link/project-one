@@ -2,7 +2,7 @@
  * @Author: limy
  * @Date: 2020-12-16 15:02:25
  * @LastEditors: limy
- * @LastEditTime: 2020-12-16 18:08:32
+ * @LastEditTime: 2020-12-17 14:11:52
  * @Description: 
 -->
 <template>
@@ -47,6 +47,13 @@
         </div>
         <div class="echart-box">
             <div class="box-left">
+                <echarts
+                    v-for="(item, index) in arr1"
+                    :key="index"
+                    :id="item.echartsId"
+                    :echartObj="item.echartObj"
+                    :style="{width: '100%', height: '300px'}"
+                />
             </div>
             <div class="box-right">
                 <echarts
@@ -56,6 +63,27 @@
                     :echartObj="item.echartObj"
                     :style="{width: '100%', height: '300px'}"
                 />
+            </div>
+        </div>
+        <div class="info">
+            <div class="info-left">
+                <span style="color:#4970ad;font-size:16px">人员信息</span>
+                <el-table :data="tableData" height="340" style="width: 100%">
+                    <el-table-column prop="date" label="日期" width="180"></el-table-column>
+                    <el-table-column prop="name" label="姓名" width="180"></el-table-column>
+                    <el-table-column prop="address" label="地址"></el-table-column>
+                </el-table>
+            </div>
+            <div class="info-right">
+                <span style="color:#4970ad;font-size:16px">天气状况</span>
+                <el-table :data="tableDataInfo" height="340" style="width: 100%">
+                    <el-table-column prop="date" label="日期" width="180" align="center"></el-table-column>
+                    <el-table-column prop="city" label="城市" width="180" align="center"></el-table-column>
+                    <el-table-column prop="weather" label="天气情况" width="180" align="center"></el-table-column>
+                    <el-table-column prop="air" label="空气质量" width="180" align="center"></el-table-column>
+                    <el-table-column prop="highest" label="最高气温" align="center"></el-table-column>
+                    <el-table-column prop="lowest" label="最高气温" align="center"></el-table-column>
+                </el-table>
             </div>
         </div>
     </div>
@@ -75,72 +103,277 @@ export default {
             night: "night",
             arr: [
                 {
-                    echartsId: "myChart4",
+                    echartsId: "myChart2",
                     echartObj: {
-                        radar: {
-                            // shape: 'circle',
-                            indicator: [
-                                {
-                                    name: "初中",
-                                    max: 6500
-                                },
-                                {
-                                    name: "硕士",
-                                    max: 16000
-                                },
-                                {
-                                    name: "博士",
-                                    max: 30000
-                                },
-                                {
-                                    name: "学士",
-                                    max: 38000
-                                },
-                                {
-                                    name: "高中",
-                                    max: 52000
-                                }
-                            ]
+                        legend: {
+                            left: "center",
+                            top: "bottom"
                         },
+                        color: [
+                            "#fe5c30",
+                            "#fe812d",
+                            "#ffce2c",
+                            "#01c5d2",
+                            "#4f71ef"
+                        ],
                         series: [
                             {
-                                type: "radar",
-                                // areaStyle: {normal: {}},
+                                type: "pie",
+                                radius: [0, 90],
+                                center: ["50%", "40%"],
+                                roseType: "area",
                                 data: [
-                                    {
-                                        value: [
-                                            4300,
-                                            14000,
-                                            28000,
-                                            35000,
-                                            50000,
-                                            19000
-                                        ],
-                                        name: "预算分配（Allocated Budget）"
-                                    }
+                                    { value: 25, name: "澳门" },
+                                    { value: 15, name: "香港" },
+                                    { value: 20, name: "大陆" },
+                                    { value: 25, name: "台湾" },
+                                    { value: 15, name: "海外" }
                                 ],
-                                areaStyle: {
+                                label: {
                                     normal: {
-                                        color: "rgba(0, 100, 255,.7)" // 填充的颜色。[ default: "#000" ]
+                                        formatter: ["{b|{b}}", "{d|{d}%}"].join(
+                                            "\n"
+                                        ),
+                                        rich: {
+                                            d: {
+                                                // color: 'rgb(241,246,104)',
+                                                fontSize: 15,
+                                                fontWeight: "bold",
+                                                lineHeight: 2
+                                            },
+                                            b: {
+                                                // color: 'rgb(98,137,169)',
+                                                fontSize: 13,
+                                                height: 40
+                                            }
+                                        }
                                     }
                                 },
-                                lineStyle: {
-                                    // 单项线条样式。
+                                labelLine: {
                                     normal: {
-                                        opacity: 0.5, // 图形透明度
-                                        color: "rgba(0, 100, 255,1)"
-                                    }
-                                },
-                                itemStyle: {
-                                    // 单个拐点标志的样式设置。
-                                    normal: {
-                                        borderColor: "rgba(0, 100, 255,.5)", // 拐点的描边颜色。[ default: '#000' ]
-                                        borderWidth: 3 // 拐点的描边宽度，默认不描边。[ default: 0 ]
+                                        lineStyle: {
+                                            color: "#ccc"
+                                        },
+                                        smooth: 0,
+                                        length: 20,
+                                        length2: 10
                                     }
                                 }
                             }
                         ]
                     }
+                }
+            ],
+            arr1: [
+                {
+                    echartsId: "myChart1",
+                    echartObj: {
+                        color: ["#FF7F00", "#4970AD"],
+                        title: {
+                            text: "未来一周气温变化",
+                            subtext: "纯属虚构"
+                        },
+                        tooltip: {
+                            trigger: "axis",
+                            axisPointer: {
+                                show: true,
+                                type: "cross",
+                                lineStyle: {
+                                    type: "dashed",
+                                    width: 1
+                                }
+                            }
+                        },
+                        legend: {
+                            data: ["最高气温", "最低气温"]
+                        },
+                        toolbox: {
+                            show: true,
+                            feature: {
+                                dataZoom: {
+                                    yAxisIndex: "none"
+                                },
+                                dataView: { readOnly: false },
+                                magicType: { type: ["line", "bar"] },
+                                restore: {},
+                                saveAsImage: {}
+                            }
+                        },
+                        xAxis: {
+                            type: "category",
+                            boundaryGap: false,
+                            data: [
+                                "周一",
+                                "周二",
+                                "周三",
+                                "周四",
+                                "周五",
+                                "周六",
+                                "周日"
+                            ]
+                        },
+                        yAxis: {
+                            type: "value",
+                            axisLabel: {
+                                formatter: "{value} °C"
+                            }
+                        },
+                        series: [
+                            {
+                                name: "最高气温",
+                                type: "line",
+                                data: [11, 11, 15, 13, 12, 13, 10],
+                                markPoint: {
+                                    data: [
+                                        { type: "max", name: "最大值" },
+                                        { type: "min", name: "最小值" }
+                                    ]
+                                },
+                                markLine: {
+                                    data: [{ type: "average", name: "平均值" }]
+                                }
+                            },
+                            {
+                                name: "最低气温",
+                                type: "line",
+                                data: [1, -2, 2, 5, 3, 2, 0],
+                                markPoint: {
+                                    data: [
+                                        {
+                                            name: "周最低",
+                                            value: -2,
+                                            xAxis: 1,
+                                            yAxis: -1.5
+                                        }
+                                    ]
+                                },
+                                markLine: {
+                                    data: [
+                                        { type: "average", name: "平均值" },
+                                        [
+                                            {
+                                                symbol: "none",
+                                                x: "90%",
+                                                yAxis: "max"
+                                            },
+                                            {
+                                                symbol: "circle",
+                                                label: {
+                                                    position: "start",
+                                                    formatter: "最大值"
+                                                },
+                                                type: "max",
+                                                name: "最高点"
+                                            }
+                                        ]
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                }
+            ],
+            tableData: [
+                {
+                    date: "2016-05-02",
+                    name: "王小虎",
+                    address: "上海市普陀区金沙江路 1518 弄"
+                },
+                {
+                    date: "2016-05-04",
+                    name: "王小虎",
+                    address: "上海市普陀区金沙江路 1517 弄"
+                },
+                {
+                    date: "2016-05-01",
+                    name: "王小虎",
+                    address: "上海市普陀区金沙江路 1519 弄"
+                },
+                {
+                    date: "2016-05-03",
+                    name: "王小虎",
+                    address: "上海市普陀区金沙江路 1516 弄"
+                },
+                {
+                    date: "2016-05-03",
+                    name: "王小虎",
+                    address: "上海市普陀区金沙江路 1516 弄"
+                },
+                {
+                    date: "2016-05-03",
+                    name: "王小虎",
+                    address: "上海市普陀区金沙江路 1516 弄"
+                },
+                {
+                    date: "2016-05-03",
+                    name: "王小虎",
+                    address: "上海市普陀区金沙江路 1516 弄"
+                }
+            ],
+            tableDataInfo: [
+                {
+                    date: "2020-12-02",
+                    city: "北京",
+                    weather: "晴天",
+                    air:'良好',
+                    highest:'5℃',
+                    lowest:'-6℃'
+                },
+                {
+                    date: "2020-12-03",
+                    city: "北京",
+                    weather: "阴天",
+                    air:'差',
+                    highest:'-1℃',
+                    lowest:'-12℃'
+                },
+                {
+                    date: "2020-12-04",
+                    city: "北京",
+                    weather: "雾霾",
+                    air:'差',
+                    highest:'3℃',
+                    lowest:'-8℃'
+                },
+                {
+                    date: "2020-12-05",
+                    city: "北京",
+                    weather: "中雪",
+                    air:'优',
+                    highest:'-3℃',
+                    lowest:'-8℃'
+                },
+                {
+                    date: "2020-12-05",
+                    city: "民权",
+                    weather: "中雪",
+                    air:'优',
+                    highest:'-3℃',
+                    lowest:'-8℃'
+                },
+                {
+                    date: "2020-12-05",
+                    city: "民权",
+                    weather: "中雪",
+                    air:'优',
+                    highest:'-3℃',
+                    lowest:'-8℃'
+                },
+                {
+                    date: "2020-12-05",
+                    city: "民权",
+                    weather: "中雪",
+                    air:'优',
+                    highest:'-3℃',
+                    lowest:'-8℃'
+                },
+                {
+                    date: "2020-12-05",
+                    city: "民权",
+                    weather: "中雪",
+                    air:'优',
+                    highest:'-3℃',
+                    lowest:'-8℃'
                 }
             ]
         };
@@ -154,11 +387,10 @@ export default {
 <style lang="scss" scoped>
 .content {
     background-color: #e9eef3;
-    height: calc(100vh);
     .header {
         box-sizing: border-box;
         width: 100%;
-        height: 180px;
+        height: 160px;
         display: flex;
         // padding: 10px;
     }
@@ -253,6 +485,27 @@ export default {
             float: right;
             width: 31%;
             height: 300px;
+        }
+    }
+    .info {
+        box-sizing: border-box;
+        margin-top: 10px;
+        width: 100%;
+        height: 360px;
+        .info-left {
+            padding: 10px;
+            background-color: #fff;
+            float: left;
+            width: 28%;
+            height: 360px;
+        }
+        .info-right {
+            padding: 10px;
+            background-color: #fff;
+            margin-right: 10px;
+            float: right;
+            width: 68.8%;
+            height: 360px;
         }
     }
 }

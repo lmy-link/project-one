@@ -2,7 +2,7 @@
  * @Author: limy
  * @Date: 2020-12-02 10:54:27
  * @LastEditors: limy
- * @LastEditTime: 2020-12-16 15:05:19
+ * @LastEditTime: 2020-12-17 14:09:38
  * @Description: 
  */
 import Vue from 'vue'
@@ -41,7 +41,7 @@ export default new Router({
           path: 'todolist',
           name: 'todolist',
           meta: {
-            desc: 'todolist'
+            desc: '页面壹'
           },
           component: components.todolist,  
         },
