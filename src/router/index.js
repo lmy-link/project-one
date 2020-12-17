@@ -2,7 +2,7 @@
  * @Author: limy
  * @Date: 2020-12-02 10:54:27
  * @LastEditors: limy
- * @LastEditTime: 2020-12-17 14:09:38
+ * @LastEditTime: 2020-12-17 14:22:14
  * @Description: 
  */
 import Vue from 'vue'
@@ -49,7 +49,7 @@ export default new Router({
           path: 'element',
           name: 'element',
           meta: {
-            desc: 'element-ui'
+            desc: 'element-tree'
           },
           component: components.element,  
         },
