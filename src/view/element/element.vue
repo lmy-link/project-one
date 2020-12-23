@@ -2,7 +2,7 @@
  * @Author: limy
  * @Date: 2020-12-02 16:09:48
  * @LastEditors: limy
- * @LastEditTime: 2020-12-17 17:11:04
+ * @LastEditTime: 2020-12-23 16:34:33
  * @Description: 
 -->
 <template>
@@ -46,6 +46,38 @@
         </div>
         <div class="tree-center">
             <div class="tree-top">
+                <div class="custom-tree-container">
+                    <div class="block">
+                        <el-tree
+                            ref="tree1"
+                            :data="data1"
+                            draggable
+                            highlight-current
+                            node-key="id"
+                            :current-node-key='currentNodekey'
+                            :default-expanded-keys="selectNodes"
+                            accordion
+                            :expand-on-click-node="false"
+                            @node-click="treeClick">
+                            <span class="custom-tree-node" slot-scope="{ node, data }">
+                                <span>
+                                    <span v-show="node.data.priority == '紧急'"  class='emergency'>{{node.data.priority}}</span>
+                                    <span v-show="node.data.priority == '重要'" class='important'>{{node.data.priority}}</span>
+                                    <span v-show="node.data.priority == '普通'" class='ordinary'>{{node.data.priority}}</span>
+                                    <span v-show="node.data.priority == '较低'" class='low'>{{node.data.priority}}</span>
+                                    <span>{{node.label}}</span>
+                                </span>
+                                <span>
+                                    <span class="el-icon-s-fold"></span>
+                                    <span style="margin-right:20px">{{func(data)}}/{{data.children?data.children.length:0}}</span>
+                                    <span class='low' v-show="node.data.state == '进行中'">{{node.data.state}}</span>
+                                    <span class='ordinary' v-show="node.data.state == '已完成'">{{node.data.state}}</span>
+                                    <span class='important' v-show="node.data.state == '待分配'">{{node.data.state}}</span>
+                                </span>
+                            </span>
+                        </el-tree>
+                    </div>
+                </div>
             </div>
             <div class="tree-bottom">
             </div>
@@ -60,7 +92,7 @@
 </template>
 <script src='./elementIndex.js'></script>
 <style lang="scss" scoped>
-.content{
+/deep/.content{
     background-color: #e9eef3;
     display: flex;
     .tree-left{
@@ -98,6 +130,12 @@
             right:10px;
             bottom:0
         }
+        // .is-current{
+        //     .el-tree-node__content{
+        //         border-radius: 10px;
+        //         background-color: aqua;
+        //     }
+        // }
     }
     .tree-bottom{
         margin-top:10px;
@@ -116,5 +154,53 @@
         margin-top:20px;
         width: auto !important;
     }
+    .custom-tree-node {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14px;
+        padding-right: 8px;
+        .emergency{
+            color: white;
+            border:1px solid red;
+            border-radius: 4px;
+            font-size: 10px;
+            padding:2px;
+            margin-right:10px;
+            background: red;
+        }
+        .important{
+            color: orangered;
+            border:1px solid orangered;
+            border-radius: 4px;
+            font-size: 10px;
+            padding:2px;
+            margin-right:10px;
+            // background: red;
+        }
+        .ordinary{
+            color: #4970ad;
+            border:1px solid #4970ad;
+            border-radius: 4px;
+            font-size: 10px;
+            padding:2px;
+            margin-right:10px;
+        }
+        .low{
+            color: green;
+            border:1px solid green;
+            border-radius: 4px;
+            font-size: 10px;
+            padding:2px;
+            margin-right:10px;
+        }
+   }
+}
+</style>
+<style>
+.el-tree-node.is-current > .el-tree-node__content {
+  background-color: aqua !important;
+  border-radius: 10px;
 }
 </style>
