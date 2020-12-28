@@ -2,7 +2,7 @@
  * @Author: limy
  * @Date: 2020-12-02 16:10:09
  * @LastEditors: limy
- * @LastEditTime: 2020-12-17 11:11:10
+ * @LastEditTime: 2020-12-25 16:20:19
  * @Description: 
  */
 export default {
@@ -12,6 +12,23 @@ export default {
     props: [],
     data () {
       return {
+        tableData: [{
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1519 弄'
+        }, {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1516 弄'
+        }],
         arr: [
           {
               // 传给Echarts的Id为了能够同时渲染三个,不传只会显示一个只会显示最后一个
