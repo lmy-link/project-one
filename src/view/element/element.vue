@@ -2,7 +2,7 @@
  * @Author: limy
  * @Date: 2020-12-02 16:09:48
  * @LastEditors: limy
- * @LastEditTime: 2020-12-23 16:34:33
+ * @LastEditTime: 2020-12-29 17:51:22
  * @Description: 
 -->
 <template>
@@ -16,9 +16,13 @@
                         placeholder="输入关键字进行过滤"
                         v-model="filterText">
                         </el-input>
+                        <el-input
+                        placeholder="输入id进行过滤"
+                        v-model="filterText1">
+                        </el-input>
                     </div>
                     <el-tree
-                        :data="data"
+                        :data="data1"
                         show-checkbox
                         default-expand-all
                         node-key="id"

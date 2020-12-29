@@ -2,7 +2,7 @@
  * @Author: limy
  * @Date: 2020-12-02 10:54:27
  * @LastEditors: limy
- * @LastEditTime: 2020-12-17 14:22:14
+ * @LastEditTime: 2020-12-29 14:27:28
  * @Description: 
  */
 import Vue from 'vue'
@@ -16,6 +16,7 @@ const components = {
   element:() => import ('@/view/element/element'),
   echarts:() => import ('@/view/echarts/echarts'),
   todolist:() => import ('@/view/todolist'),
+  elTree:() => import ('@/view/elTree/elTree'),
 };
 export default new Router({
   mode: 'history',
@@ -60,6 +61,14 @@ export default new Router({
             desc: 'echarts'
           },
           component: components.echarts,  
+        },
+        {
+          path: 'elTree',
+          name: 'elTree',
+          meta: {
+            desc: 'elTree'
+          },
+          component: components.elTree,  
         },
       ]
     }

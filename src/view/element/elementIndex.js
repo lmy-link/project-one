@@ -2,7 +2,7 @@
  * @Author: limy
  * @Date: 2020-12-02 16:10:09
  * @LastEditors: limy
- * @LastEditTime: 2020-12-23 16:40:12
+ * @LastEditTime: 2020-12-29 18:04:21
  * @Description: 
  */
 let id = 1000;
@@ -121,6 +121,7 @@ export default {
         },
         isSelectedList:[],
         filterText: '',
+        filterText1: '',
         data1: JSON.parse(JSON.stringify(data1)),
       }
     },
@@ -137,7 +138,10 @@ export default {
         });
       },
     filterText(val) {
-      this.$refs.tree.filter(val);
+      this.$refs.tree.filter(this.filterText);
+    },
+    filterText1(val) {
+      this.$refs.tree.filter(this.filterText1);
     }
     },
     mounted () {
@@ -171,8 +175,22 @@ export default {
         this.isSelectedList.splice(this.isSelectedList.indexOf(tag), 1);
       },
       filterNode(value, data) {
-        if (!value) return true;
-        return data.label.indexOf(value) !== -1;
+        let flag = true
+        if(this.filterText){
+            if(data.label.indexOf(this.filterText) == -1){
+              flag = false
+            }
+        }
+        if(this.filterText1){
+          if(data.id.toString().indexOf(this.filterText1) == -1){
+            flag = false
+          }
+        }
+        if(flag){
+          return true
+        } else {
+          return false
+        }
       },
       func(data){
         if(data.children){
@@ -189,7 +207,6 @@ export default {
       },
       treeClick(val){
         window.sessionStorage.setItem('selectId',val.id)
-        console.log(val)
       }
     }
   }

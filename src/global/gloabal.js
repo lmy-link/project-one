@@ -2,7 +2,7 @@
  * @Author: limy
  * @Date: 2020-12-02 16:31:23
  * @LastEditors: limy
- * @LastEditTime: 2020-12-17 14:22:23
+ * @LastEditTime: 2020-12-29 14:27:44
  * @Description: 
  */
 
@@ -21,8 +21,8 @@ global.router = [
         index:2
     },
     {
-        name: 'pdf',
-        path: '/home',
+        name: 'el-tree',
+        path: '/home/elTree',
         class:'el-icon-document',
         index:3
     },
